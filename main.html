@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Klaus Satzke" />
+  <title>A Muon Observatory</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    div.abstract {
+      margin: 2em 2em 2em 2em;
+      text-align: left;
+      font-size: 85%;
+    }
+    div.abstract-title {
+      font-weight: bold;
+      text-align: center;
+      padding: 0;
+      margin-bottom: 0.5em;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">A Muon Observatory</h1>
+<p class="author">Klaus Satzke</p>
+<div class="abstract">
+<div class="abstract-title">Abstract</div>
+<p>This article gives background information on the muon elementary
+particle generation in the atmosphere through cosmic radiation,
+describes the construction of a homemade muon detector. and presents
+some first measurement results obtained.</p>
+</div>
+</header>
+<h1 id="introduction">Introduction</h1>
+<p>Before the discovery of the muon in 1836 by Carl Anderson and Seth
+Neddermeyer, physicists believed they had understood the building blocks
+of the universe: the world seemed to consist only of protons, neutrons,
+electrons and photons. This was all the physicists of that time needed
+to construct the known elements of the complete periodic system.</p>
+<p>Muons were first discovered by American physicists Carl D. Anderson
+and his student Seth Neddermeyer at Caltech in 1936 while they studied
+cosmic radiation using a cloud chamber <span class="citation"
+data-cites="Neddermeyer1937"></span>. The famous phrase "Who ordered
+that?" was a quip made by Nobel laureate and physicist Isidor Isaac
+Rabi. He said it because the muon behaved like a heavy version of the
+electron, but physicists did not expect or predict another particle like
+it at the time.</p>
+<p>Anderson and Neddermeyer observed highly penetrating particles that
+were not electrons or protons, leading to the identification of muons.
+They are highly unstable particles, and they undergo a process called
+muon decay. When a muon decays, it transforms into an electron, along
+with two types of neutrinos.</p>
+<p>Muons are continually produced in Earth’s atmosphere by cosmic ray
+collisions, approximately 15 kilometers above the Earth’s surface. These
+high-energy particles, predominantly protons and other atomic nuclei
+collide with the nuclei of atmospheric gases, resulting in the creation
+of muons.</p>
+<p>Muons travel toward Earth at speeds reaching up to 99% of the speed
+of light. Given their fleeting existence, one would expect them to cover
+only a few meters before decaying. The intriguing question arises here:
+<span><strong>How do scientists manage to detect them on Earth,
+considering their short lifespan?</strong></span></p>
+<p>Surprisingly, much like neutrinos, muons are ubiquitous, continually
+passing through our bodies at around a thousand times per minute. This
+feat made scientists wonder how they were able to accomplish this
+seemingly impossible journey, surpassing their own lifespan in the
+distance traveled.</p>
+<h1 id="the-standard-model">The Standard Model</h1>
+<p>The Standard Model of particle physics is the theory describing three
+of the four known fundamental forces (electromagnetic, weak and strong
+interactions – excluding gravity) in the universe and classifying all
+known elementary particles. It was developed in stages throughout the
+latter half of the 20th century, through the work of many scientists
+worldwide [1], with the current formulation being finalized in the
+mid-1970s upon experimental confirmation of the existence of quarks.
+Since then, proof of the top quark (1995), the tau neutrino (2000), and
+the Higgs boson (2012) have added further credence to the Standard
+Model. In addition, the Standard Model has predicted with great accuracy
+the various properties of weak neutral currents and the W and Z
+bosons.</p>
+<p><a href="#fig:standardmodel" data-reference-type="ref"
+data-reference="fig:standardmodel">1</a>.</p>
+<figure id="fig:standardmodel">
+<img src="./standardmodel.png" style="width:50.0%" />
+<figcaption><span id="fig:standardmodel"
+data-label="fig:standardmodel"></span>The particles of the Standard
+Model: fermions in blue (quarks) and green (leptons), vector bosons in
+red and the Higgs boson in the center in yellow.</figcaption>
+</figure>
+<p>In this model, the muon is an elementary particle classified as a
+second-generation charged lepton, main properties;</p>
+<ul>
+<li><p>Charge; negative
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>1</mn><mi>e</mi></mrow><annotation encoding="application/x-tex">-1e</annotation></semantics></math>).</p></li>
+<li><p>Spin of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">1/2</annotation></semantics></math>
+(Fermion).</p></li>
+<li><p>Mass: About 207 times more massive than an electron
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≈</mo><mn>105.66</mn><msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> MeV/c</mtext></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\approx 105.66 \text{ MeV/c}^2</annotation></semantics></math>).</p></li>
+<li><p>Lifespan: Unstable, with a mean lifetime of about 2.2
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>s
+before decaying into an electron and two neutrinos.</p></li>
+<li><p>Origin: Formed naturally when cosmic rays strike Earth’s upper
+atmosphere, or artificially in particle accelerators.</p></li>
+</ul>
+<h1 id="a-simple-muon-detector">A Simple Muon detector</h1>
+<p>In contrast to other related projects, this muon detector uses two
+M4011/J321 type Geiger-Müller counter tubes, see Figure <a
+href="#fig:datasheet" data-reference-type="ref"
+data-reference="fig:datasheet">2</a>.</p>
+<figure id="fig:datasheet">
+<img src="./datasheet.png" style="width:50.0%" />
+<figcaption><span id="fig:datasheet"
+data-label="fig:datasheet"></span>Datasheet of the M4011 Geiger Müller
+tube.</figcaption>
+</figure>
+<p>These tubes are readily available from a a number of sources and are
+quite cheap. However, because of the transparent glass tubes they are
+quite sensitive to visible light, which calls for a shield against stray
+light during measurements. We used shrink tubes as stray light
+protection.</p>
+<p>These tubes have an active length of approximately 90 mm and a
+diameter of 10 mm, with a spacing of 38 mm between them. This
+configuration yields an angular resolution of approximately 30 degrees
+(in one direction). To virtually eliminate natural radiation (beta and
+gamma) via the TTL coincidence circuit, a 1mm thick lead shielding plate
+is positioned between the two tubes. Cosmic radiation—specifically
+secondary particles (namely muons) generated by collisions with
+atmospheric atoms—possesses sufficient energy to penetrate both tubes,
+unlike the gamma radiation from natural radioactivity. Consequently,
+they trigger ionization in both tubes almost simultaneously, an event
+the coincidence circuit can register. Since the angle of incidence of
+the cosmic radiation influences the recorded flux rate, the detector’s
+elevation can be adjusted to verify this effect.</p>
+<p>Cosmic radiation intensity is highest for vertical incidence into the
+Earth’s atmosphere and drops to practically zero for horizontal
+incidence. The electronics system is designed to detect and count
+simultaneous ionization events within the counter tubes (including
+display). This requires a coincidence circuit and a micro-controller
+circuit; the latter counts the events and transmits the data to an
+Internet service (ThingSpeak, <a href="www.thingspeak.com"
+class="uri">www.thingspeak.com</a>).</p>
+<p>Pulses from both counter tubes are counted by the micro-controller
+over 60-second intervals and transmitted to the service. Coincidence
+events are also counted and transmitted to the PC every 60 seconds.
+Interestingly, the count values of the individual counter tubes serve as
+a measure of the natural background radioactivity.</p>
+<h1 id="a-bit-of-of-high-energy-particle-physics">A bit of of
+High-Energy Particle Physics</h1>
+<p>Cosmic radiation consists of high-energy particles originating from
+space. Earth—and indeed every other body—is constantly traversed by
+cosmic particles. The nature of cosmic radiation is highly diverse,
+spanning an energy range of 14 orders of magnitude. Cosmic radiation
+originates from the Sun, other stars, novae, supernovae, galaxies, and
+quasars <a href="#fig:cosmicradiation" data-reference-type="ref"
+data-reference="fig:cosmicradiation">3</a>.</p>
+<figure id="fig:cosmicradiation">
+<img src="./image.png" style="width:50.0%" />
+<figcaption>Flow rate of cosmic radiation <span class="citation"
+data-cites="swordy2001energy"></span></figcaption>
+</figure>
+<p>Figure <a href="#fig:cosmicradiation" data-reference-type="ref"
+data-reference="fig:cosmicradiation">3</a> shows the flux rate of cosmic
+rays as a function of particle energy. Different areas are highlighted
+in color to indicate the celestial bodies from which the cosmic rays
+predominantly originate. Yellow: Sun, Blue: Galaxy (Milky Way), Violet:
+intergalactic sources such as quasars.</p>
+<figure id="fig:secondaryparticles">
+<img src="./image2.png" style="width:50.0%" />
+<figcaption>Particles entering the atmosphere, generating secondary
+particles <span class="citation"
+data-cites="Blasi_2013"></span></figcaption>
+</figure>
+<p>Figure <a href="#fig:secondaryparticles" data-reference-type="ref"
+data-reference="fig:secondaryparticles">4</a> shows which particles
+enter the Earth’s atmosphere and produce secondary particles. The Figure
+also shows which instruments are used for detection and which research
+facilities operate in which energy ranges.</p>
+<p>On average, every second a particle strikes an area of one square
+centimeter of the Earth’s surface. Most cosmic particles arriving at
+Earth are secondary products of particle showers formed by primary
+particles through interactions with atoms in the atmosphere of Earth,
+typically in a cascade beginning with a single high-energy particle.</p>
+<h1 id="primary-cosmic-particles">Primary cosmic particles</h1>
+<p>Outside of the atmosphere of Earth, primary cosmic particles consist
+mainly of protons and alpha particles (99%) with a small amount of
+heavier nuclei
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>≈</mo><annotation encoding="application/x-tex">\approx</annotation></semantics></math>
+1%) and an extremely small proportion of positrons and antiprotons. Once
+in the atmosphere of Earth, these particles interact with the nuclei of
+atmospheric molecules, forming new particles in a cascade process that
+moves forward, called secondary cosmic rays.</p>
+<p>The composition and energy spectrum of primary cosmic rays have been
+extensively studied. The flux of hydrogen is slightly higher than 90%,
+slightly less than 10% helium,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn><mi>x</mi><msup><mn>10</mn><mo>−</mo></msup><mn>4</mn></mrow><annotation encoding="application/x-tex">7 x 10^-4</annotation></semantics></math>
+for lighter elements such as Li, Be, and B, and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mi>x</mi><msup><mn>10</mn><mo>−</mo></msup><mn>3</mn></mrow><annotation encoding="application/x-tex">5 x 10^-3</annotation></semantics></math>
+for other elements such as C and Ne.</p>
+<p>The energy spectrum follows a power law in the following form:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>∝</mo><msup><mi>E</mi><mrow><mi>−</mi><mi>α</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\begin{equation}
+    \phi \propto E^{-\alpha}
+\end{equation}</annotation></semantics></math> where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mn>2.7</mn></mrow><annotation encoding="application/x-tex">\alpha = 2.7</annotation></semantics></math>
+for an energies less than
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>10</mn><mn>15</mn></msup><annotation encoding="application/x-tex">10^{15}</annotation></semantics></math>
+eV.</p>
+<figure id="fig:processes">
+<img src="./image3.png" style="width:50.0%" />
+<figcaption>Processes generating myonic components <span
+class="citation" data-cites="Grupen1985"></span></figcaption>
+</figure>
+<p>When measuring cosmic radiation, a distinction can made between
+different components. The detector presented here is designed for
+specifically measuring the muonic radiation component. Other detector
+concepts are designed to register radio or visible radiation like
+air-Cherenkov <a href="#fig:overviewdetectors" data-reference-type="ref"
+data-reference="fig:overviewdetectors">6</a>, showing which types of
+detectors can be used today for recording cosmic radiation events.</p>
+<figure id="fig:overviewdetectors">
+<img src="./image4.png" style="width:50.0%" />
+<figcaption>Overview on radiation detector concepts <span
+class="citation" data-cites="Schroder2017RadioDO"></span></figcaption>
+</figure>
+<p>Secondary radiation at sea level consists of two components (soft and
+hard), which behave differently when passing through very dense
+materials like iron or lead.</p>
+<ol>
+<li><p>The soft component (approximately 30% of the secondary
+radiation), consisting of electrons and photons and a small fraction of
+protons, kaons, and nuclei, can only penetrate a few
+centimeters.</p></li>
+<li><p>The harder component (approximately 70%), consisting of muons,
+can penetrate absorbing materials several meters thick.</p></li>
+</ol>
+<p>The average particle flux that makes up cosmic rays reaches, at sea
+level, estimated:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mo>×</mo><mfrac><mrow><mi>p</mi><mi>a</mi><mi>r</mi><mi>t</mi><mi>i</mi><mi>c</mi><mi>l</mi><mi>e</mi><mi>s</mi></mrow><mrow><msup><mi>m</mi><mn>2</mn></msup><mi>s</mi></mrow></mfrac><mo>≈</mo><mn>0.01</mn><mo>×</mo><mfrac><mrow><mi>p</mi><mi>a</mi><mi>r</mi><mi>t</mi><mi>i</mi><mi>c</mi><mi>l</mi><mi>e</mi><mi>s</mi></mrow><mrow><mi>c</mi><msup><mi>m</mi><mn>2</mn></msup><mi>s</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\begin{equation}
+    100 \times \frac{particles}{m^2 s}\approx 0.01 \times \frac{particles}{cm^2 s}
+\end{equation}</annotation></semantics></math></p>
+<p>The flux of cosmic rays is a function of the angle to the
+perpendicular of the Earth’s surface and is described by:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>θ</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>4</mn><mi>/</mi><mi>π</mi><mo>*</mo><mi>c</mi><mi>o</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>θ</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>,</mo><mi>θ</mi><mo>∈</mo><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mi>π</mi><mi>/</mi><mn>2</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
+f(\theta)= 4/ \pi * cos(\theta)^2, \theta \in [0 ,\pi /2]
+\end{equation}</annotation></semantics></math></p>
+<p>The particles that make up cosmic rays have high energy. It is
+estimated that the average flux at sea level has an average energy of 3
+GeV. The muon, the main component of secondary cosmic rays, is an
+elementary particle with a spin of ½ and a mass of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>105.658389</mn><mo>±</mo><mn>0.000034</mn><mi>M</mi><mi>e</mi><mi>V</mi><mi>/</mi><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">105.658389 \pm 0.000034 MeV/c^2</annotation></semantics></math>.
+As mentioned above, muons are mainly produced in the upper atmosphere by
+the decay of pions:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>τ</mi><mi>μ</mi></msub><mo>=</mo><mn>2.19703</mn><mo>±</mo><mn>0.00004</mn><mi>μ</mi><mi>s</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msup><mi>π</mi><mi>p</mi></msup><mo>→</mo><msup><mi>μ</mi><mi>p</mi></msup><mo>+</mo><msup><mi>ν</mi><mi>p</mi></msup></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msup><mi>π</mi><mi>n</mi></msup><mo>→</mo><msup><mi>μ</mi><mi>n</mi></msup><mo>+</mo><msubsup><mi>ν</mi><mi>μ</mi><mo>−</mo></msubsup></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{equation}
+\begin{aligned}
+\tau_\mu = 2.19703 \pm 0.00004 \mu s \\ 
+\pi^p \rightarrow \mu^p  + \nu^p \\ 
+\pi^n \rightarrow \mu^n  + \nu^-_\mu
+\end{aligned}
+\end{equation}</annotation></semantics></math></p>
+<p>During production, muons have relativistic velocity, and due to time
+dilation (theory of relativity), they can reach the ocean surface, where
+they can be observed, despite their short lifetime.
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><mi>p</mi></msub><annotation encoding="application/x-tex">\mu_p</annotation></semantics></math>
+particles are about 20% more abundant than
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><mi>n</mi></msub><annotation encoding="application/x-tex">\mu_n</annotation></semantics></math>
+particles.</p>
+<h1 id="measurement-of-the-cosmic-particle-flux">Measurement of the
+Cosmic Particle Flux</h1>
+<p>This chapter describes the results obtained with the coincidence
+detector apparatus presented here. The measurements were carried out at
+different times of day, and for different angles.</p>
+<p>The integration time was assumed to be 3600s: Sensor area =
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9</mn><mi>c</mi><msup><mi>m</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">9 cm^2</annotation></semantics></math>
+Maximum theoretical flux = (0.01 x 9) x 60 = 5.4 cpm (counts per
+minute)</p>
+<p><span><strong>ToDo: more measurement results...</strong> </span></p>
+<h1 id="geometric-calculation-of-the-muon-telescope">Geometric
+calculation of the muon telescope</h1>
+<p>Here, the geometric acceptance and the expected coincidence count
+rate for a particle telescope consisting of two identical, parallel,
+stacked Geiger-Müller tubes of type J321 (M4011) are calculated.</p>
+<h2 class="unnumbered" id="parameter-detector-geometry">Parameter
+(Detector geometry)</h2>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><mi>l</mi></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mn>85</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mm</mtext></mrow><mo>=</mo><mn>0</mn><mo>,</mo><mn>085</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> m</mtext></mrow></mtd><mtd columnalign="right" style="text-align: right; padding-right: 0"></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mtext mathvariant="normal">(Sensitive Tube Length)</mtext></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><mi>D</mi></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mn>10</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mm</mtext></mrow><mo>=</mo><mn>0</mn><mo>,</mo><mn>010</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> m</mtext></mrow></mtd><mtd columnalign="right" style="text-align: right; padding-right: 0"></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mtext mathvariant="normal">(Tube Diameter)</mtext></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><mi>d</mi></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mn>70</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> mm</mtext></mrow><mo>=</mo><mn>0</mn><mo>,</mo><mn>070</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> m</mtext></mrow></mtd><mtd columnalign="right" style="text-align: right; padding-right: 0"></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mtext mathvariant="normal">(Vertical Distance)</mtext></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><mi>A</mi></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>l</mi><mo>⋅</mo><mi>D</mi><mo>=</mo><mn>8</mn><mo>,</mo><mn>5</mn><mo>⋅</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> m</mtext></mrow><mn>2</mn></msup></mtd><mtd columnalign="right" style="text-align: right; padding-right: 0"></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mtext mathvariant="normal">(projection area of tube)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
+    l &amp;= 85\text{ mm} = 0{,}085\text{ m} &amp;&amp; \text{(Sensitive Tube Length)} \\
+    D &amp;= 10\text{ mm} = 0{,}010\text{ m} &amp;&amp; \text{(Tube Diameter)} \\
+    d &amp;= 70\text{ mm} = 0{,}070\text{ m} &amp;&amp; \text{(Vertical Distance)} \\
+    A &amp;= l \cdot D = 8{,}5 \cdot 10^{-4}\text{ m}^2 &amp;&amp; \text{(projection area of tube)}
+\end{align*}</annotation></semantics></math></p>
+<h2 class="unnumbered"
+id="maximum-acceptance-angle-cut-off-angle">Maximum Acceptance Angle
+(Cut-off-angle)</h2>
+<p>Due to the cylindrical geometry, the field of view (the solid angle)
+differs dramatically along the two principal axes.</p>
+<ul>
+<li><p><strong>transverse axis:</strong>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mtext mathvariant="normal">max, transverse</mtext></msub><mo>=</mo><mrow><mi mathvariant="normal">arctan</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mi>D</mi><mi>d</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mi mathvariant="normal">arctan</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mn>1</mn><mo>,</mo><mn>0</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> cm</mtext></mrow></mrow><mrow><mn>7</mn><mo>,</mo><mn>0</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> cm</mtext></mrow></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>≈</mo><mn>8</mn><mo>,</mo><msup><mn>13</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">\begin{equation}
+        \theta_{\text{max, transverse}} = \arctan\left(\frac{D}{d}\right) = \arctan\left(\frac{1{,}0\text{ cm}}{7{,}0\text{ cm}}\right) \approx 8{,}13^\circ
+\end{equation}</annotation></semantics></math></p></li>
+<li><p><strong>lateral axis:</strong>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mtext mathvariant="normal">max, lateral</mtext></msub><mo>=</mo><mrow><mi mathvariant="normal">arctan</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mi>l</mi><mi>d</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mi mathvariant="normal">arctan</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mn>8</mn><mo>,</mo><mn>5</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> cm</mtext></mrow></mrow><mrow><mn>7</mn><mo>,</mo><mn>0</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> cm</mtext></mrow></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>≈</mo><mn>50</mn><mo>,</mo><msup><mn>51</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">\begin{equation}
+        \theta_{\text{max, lateral}} = \arctan\left(\frac{l}{d}\right) = \arctan\left(\frac{8{,}5\text{ cm}}{7{,}0\text{ cm}}\right) \approx 50{,}51^\circ
+\end{equation}</annotation></semantics></math></p></li>
+</ul>
+<h2 class="unnumbered"
+id="geometric-acceptance-g-geant-factor">Geometric Acceptance
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math>
+(Geant-Factor)</h2>
+<p>Since the distance
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>
+is of the same order of magnitude as the tube length
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>l</mi><annotation encoding="application/x-tex">l</annotation></semantics></math>,
+the point-source approximation
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>≈</mo><msup><mi>A</mi><mn>2</mn></msup><mi>/</mi><msup><mi>d</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">G \approx A^2/d^2</annotation></semantics></math>)
+yields an inaccurate value. For parallel cylinders in the near field,
+the integral is approximated analytically using the intersection of the
+solid angles:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><msub><mo>∫</mo><mi>A</mi></msub><msub><mo>∫</mo><mi mathvariant="normal">Ω</mi></msub><mrow><mi mathvariant="normal">cos</mi><mo>&#8289;</mo></mrow><mi>θ</mi><mspace width="0.167em"></mspace><mi>d</mi><mi mathvariant="normal">Ω</mi><mspace width="0.167em"></mspace><mi>d</mi><mi>A</mi><mo>≈</mo><mn>1</mn><mo>,</mo><mn>35</mn><mo>⋅</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> m</mtext></mrow><mn>2</mn></msup><mtext mathvariant="normal">sr</mtext></mrow><annotation encoding="application/x-tex">\begin{equation}
+    G = \int_{A} \int_{\Omega} \cos\theta \, d\Omega \, dA \approx 1{,}35 \cdot 10^{-4} \text{ m}^2\text{sr}
+\end{equation}</annotation></semantics></math></p>
+<h2 class="unnumbered"
+id="calculation-of-the-expected-coincidence-count-rate">Calculation of
+the expected coincidence count rate</h2>
+<p>The mean integrated muon flux at sea level is approximated as
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>≈</mo><mn>100</mn><msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> m</mtext></mrow><mrow><mi>−</mi><mn>2</mn></mrow></msup><msup><mtext mathvariant="normal">s</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><msup><mtext mathvariant="normal">sr</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">I \approx 100\text{ m}^{-2}\text{s}^{-1}\text{sr}^{-1}</annotation></semantics></math>
+for this geometry. The expected coincidence rate
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>R</mi><mtext mathvariant="normal">coin</mtext></msub><annotation encoding="application/x-tex">R_{\text{coin}}</annotation></semantics></math>
+per second (Hz) is calculated as follows:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>R</mi><mtext mathvariant="normal">coin</mtext></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>I</mi><mo>⋅</mo><mi>G</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>R</mi><mtext mathvariant="normal">coin</mtext></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>≈</mo><mn>100</mn><msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> m</mtext></mrow><mrow><mi>−</mi><mn>2</mn></mrow></msup><msup><mtext mathvariant="normal">s</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><msup><mtext mathvariant="normal">sr</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>35</mn><mo>⋅</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> m</mtext></mrow><mn>2</mn></msup><mtext mathvariant="normal">sr</mtext><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>R</mi><mtext mathvariant="normal">coin</mtext></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>≈</mo><mn>0</mn><mo>,</mo><mn>0135</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> Hz</mtext></mrow></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
+    R_{\text{coin}} &amp;= I \cdot G \\
+    R_{\text{coin}} &amp;\approx 100\text{ m}^{-2}\text{s}^{-1}\text{sr}^{-1} \cdot \left(1{,}35 \cdot 10^{-4}\text{ m}^2\text{sr}\right) \\
+    R_{\text{coin}} &amp;\approx 0{,}0135\text{ Hz}
+\end{align*}</annotation></semantics></math></p>
+<p>Converted to the unit commonly used for Geiger counters <em>Counts
+per Minute</em> (cpm):
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>R</mi><mtext mathvariant="normal">cpm</mtext></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>R</mi><mtext mathvariant="normal">coin</mtext></msub><mo>⋅</mo><mn>60</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> s</mtext></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>R</mi><mtext mathvariant="normal">cpm</mtext></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>≈</mo><mn>0</mn><mo>,</mo><mn>0135</mn><mo>⋅</mo><mn>60</mn><mo>≈</mo><mrow><mn mathvariant="bold">𝟎</mn><mo mathvariant="bold">,</mo><mn mathvariant="bold">𝟖𝟏</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="bold"> 𝐜𝐩𝐦</mtext></mrow></mrow></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
+    R_{\text{cpm}} &amp;= R_{\text{coin}} \cdot 60\text{ s} \\
+    R_{\text{cpm}} &amp;\approx 0{,}0135 \cdot 60 \approx \mathbf{0{,}81\text{ cpm}}
+\end{align*}</annotation></semantics></math></p>
+<h2 class="unnumbered" id="correction-of-random-coincidences">Correction
+of random coincidences</h2>
+<p>With a measured background rate of, for example, With
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mn>1</mn></msub><mo>=</mo><msub><mi>R</mi><mn>2</mn></msub><mo>=</mo><mn>20</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> cpm</mtext></mrow><mo>≈</mo><mn>0.33</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> Hz</mtext></mrow></mrow><annotation encoding="application/x-tex">R_1 = R_2 = 20\text{ cpm} \approx 0.33\text{ Hz}</annotation></semantics></math>
+per individual tube and an electronic coincidence gate time of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><mn>10</mn><mspace width="0.167em"></mspace><mi>μ</mi><mtext mathvariant="normal">s</mtext><mo>=</mo><mn>10</mn><mo>⋅</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>6</mn></mrow></msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> s</mtext></mrow></mrow><annotation encoding="application/x-tex">\tau = 10\,\mu\text{s} = 10 \cdot 10^{-6}\text{ s}</annotation></semantics></math>,
+the rate of the spurious signals is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>R</mi><mtext mathvariant="normal">random</mtext></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mn>2</mn><mo>⋅</mo><msub><mi>R</mi><mn>1</mn></msub><mo>⋅</mo><msub><mi>R</mi><mn>2</mn></msub><mo>⋅</mo><mi>τ</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>R</mi><mtext mathvariant="normal">random</mtext></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mn>2</mn><mo>⋅</mo><mn>0.33</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> Hz</mtext></mrow><mo>⋅</mo><mn>0.33</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> Hz</mtext></mrow><mo>⋅</mo><mn>10</mn><mo>⋅</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>6</mn></mrow></msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> s</mtext></mrow><mo>≈</mo><mn>2.18</mn><mo>⋅</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>6</mn></mrow></msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> Hz</mtext></mrow><mo>≈</mo><mrow><mn mathvariant="bold">𝟎</mn><mo mathvariant="bold">,</mo><mn mathvariant="bold">𝟎𝟎𝟎𝟏𝟑</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="bold"> 𝐜𝐩𝐦</mtext></mrow></mrow></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
+R_{\text{random}} &amp;= 2 \cdot R_1 \cdot R_2 \cdot \tau \\
+R_{\text{random}} &amp;= 2 \cdot 0.33\text{ Hz} \cdot 0.33\text{ Hz} \cdot 10 \cdot 10^{-6}\text{ s} \approx 2.18 \cdot 10^{-6}\text{ Hz} \approx \mathbf{0{,}00013\text{ cpm}}
+\end{align*}</annotation></semantics></math> Since
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mtext mathvariant="normal">random</mtext></msub><mo>≪</mo><msub><mi>R</mi><mtext mathvariant="normal">coin</mtext></msub></mrow><annotation encoding="application/x-tex">R_{\text{random}} \ll R_{\text{coin}}</annotation></semantics></math>,
+the chosen value for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
+is sufficiently small to keep the signal-to-noise ratio stable.</p>
+<h1 id="detector-schematics">Detector Schematics</h1>
+<p>The simple Double Geiger Counter circuit <a href="#fig:schematic"
+data-reference-type="ref" data-reference="fig:schematic">7</a> includes
+tow high voltage drivers producing the 350-480V DC anode voltage for the
+Geiger Müller tubes. For normal operation the high voltage do not need
+to be stabilized, so several volts drifts will not affect the results,
+since the voltage is in tube plateau. Since Geiger tube consume only
+several uA, it also does not need any large capacitors. The Pulse
+registration circuit stage is build with a standard transistor and an
+ICM7556 yielding two 555 timer cirbuits. Each 555 circuit represents a
+monoflop acting as pulse stretcher for the subsequent Raspberyy Pi
+circuit registering the produced pulses via GPIO I/O. Additionally, a
+simple SN7400 NAND TLL circuit serves as a pulse coincidence
+registration scheme.</p>
+<figure id="fig:schematic">
+<img src="./schematic.png" style="width:100.0%" />
+<figcaption>Muon Detector Schematic</figcaption>
+</figure>
+<p>The completed detector setup including Geiger Müller tube holder
+wither high-voltage power supplies, and the counter circuit with
+coincidence detector is shown in Figure <a href="#fig:detectoroverview"
+data-reference-type="ref"
+data-reference="fig:detectoroverview">8</a></p>
+<figure id="fig:detectoroverview">
+<img src="./detectoroverview.jpg" style="width:50.0%" />
+<figcaption>Completed detector setup</figcaption>
+</figure>
+</body>
+</html>
